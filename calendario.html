@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Calendario - Rovate Cup 2025</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header>
+    <h1>Calendario Partite</h1>
+    <img src="img/logo_rovate_cup_1.png" alt="Logo Rovate Cup">
+</header>
+
+<nav>
+    <a href="index.html">Home</a>
+    <a href="squadre.html">Squadre</a>
+    <a href="calendario.html">Calendario</a>
+    <a href="classifica.html">Classifica</a>
+    <a href="iscrizione.html">Iscrizione</a>
+    <a href="regolamento.html">Regolamento</a>
+</nav>
+
+<div class="container">
+
+    <h2>Fase a Gironi</h2>
+
+    <h3>Girone A</h3>
+    <table>
+        <thead>
+        <tr><th>Data</th><th>Ora</th><th>Squadra 1</th><th>Squadra 2</th><th>Risultato</th></tr>
+        </thead>
+        <tbody id="girone-a-calendario"></tbody>
+    </table>
+
+    <h3>Girone B</h3>
+    <table>
+        <thead>
+        <tr><th>Data</th><th>Ora</th><th>Squadra 1</th><th>Squadra 2</th><th>Risultato</th></tr>
+        </thead>
+        <tbody id="girone-b-calendario"></tbody>
+    </table>
+
+    <h2>Eliminatorie</h2>
+    <table>
+        <thead>
+        <tr><th>Data</th><th>Ora</th><th>Squadra 1</th><th>Squadra 2</th><th>Risultato</th></tr>
+        </thead>
+        <tbody id="eliminatorie"></tbody>
+    </table>
+
+    <h2>Quarti di Finale</h2>
+    <table>
+        <thead>
+        <tr><th>Data</th><th>Ora</th><th>Squadra 1</th><th>Squadra 2</th><th>Risultato</th></tr>
+        </thead>
+        <tbody id="quarti"></tbody>
+    </table>
+
+    <h2>Semifinali</h2>
+    <table>
+        <thead>
+        <tr><th>Data</th><th>Ora</th><th>Squadra 1</th><th>Squadra 2</th><th>Risultato</th></tr>
+        </thead>
+        <tbody id="semifinali"></tbody>
+    </table>
+
+    <h2>Finali</h2>
+    <table>
+        <thead>
+        <tr><th>Data</th><th>Ora</th><th>Squadra 1</th><th>Squadra 2</th><th>Risultato</th></tr>
+        </thead>
+        <tbody id="finali"></tbody>
+    </table>
+
+    <div id="classifica-finale" style="margin-top: 50px;"></div>
+
+</div>
+
+<script src="js/squadre.js"></script>
+<script src="js/risultati.js"></script>
+
+<script>
+    // --- FUNZIONI ---
+    function nomeSquadra(squadra) {
+        if (typeof squadra === 'object' && squadra !== null) {
+            return squadra.nome;
+        }
+        return squadra;
+    }
+
+    function creaClassifica(squadre) {
+        const c = {};
+        Object.values(squadre).forEach(s => {
+            c[s.nome] = { PG: 0, V: 0, N: 0, P: 0, GF: 0, GS: 0, DR: 0, Punti: 0 };
+        });
+        return c;
+    }
+
+    function aggiornaClassifica(classifica, partite, squadre) {
+        partite.forEach(p => {
+            if (p.risultato !== "-") {
+                const [g1, g2] = p.risultato.split("-").map(Number);
+                const s1 = nomeSquadra(squadre[p.squadra1]);
+                const s2 = nomeSquadra(squadre[p.squadra2]);
+                classifica[s1].PG++;
+                classifica[s2].PG++;
+                classifica[s1].GF += g1;
+                classifica[s1].GS += g2;
+                classifica[s2].GF += g2;
+                classifica[s2].GS += g1;
+                if (g1 > g2) { classifica[s1].V++; classifica[s1].Punti += 3; classifica[s2].P++; }
+                else if (g1 < g2) { classifica[s2].V++; classifica[s2].Punti += 3; classifica[s1].P++; }
+                else { classifica[s1].N++; classifica[s2].N++; classifica[s1].Punti++; classifica[s2].Punti++; }
+            }
+        });
+        for (let s in classifica) {
+            classifica[s].DR = classifica[s].GF - classifica[s].GS;
+        }
+    }
+
+    function ordinaClassifica(classifica) {
+        return Object.entries(classifica)
+            .sort((a, b) => b[1].Punti - a[1].Punti || b[1].DR - a[1].DR || b[1].GF - a[1].GF)
+            .map(e => e[0]);
+    }
+
+    function vincente(match) {
+        if (match.risultato && match.risultato !== "-") {
+            const [g1, g2] = match.risultato.split("-").map(Number);
+            return g1 > g2 ? match.squadra1 : match.squadra2;
+        }
+        return null;
+    }
+
+    function perdente(match) {
+        if (match.risultato && match.risultato !== "-") {
+            const [g1, g2] = match.risultato.split("-").map(Number);
+            return g1 > g2 ? match.squadra2 : match.squadra1;
+        }
+        return null;
+    }
+
+    function risultatiCompleti() {
+        return [...risultatiPartite.gironeA, ...risultatiPartite.gironeB, ...risultatiFaseFinale.eliminatorie, ...risultatiFaseFinale.quarti, ...risultatiFaseFinale.semifinali, ...risultatiFaseFinale.finali]
+            .every(p => p.risultato !== "-");
+    }
+
+    // --- DATE ---
+    const dateFasi = {
+        eliminatorie: "04/06/2025",
+        quarti: "09/06/2025",
+        semifinali: "11/06/2025",
+        finali: "13/06/2025"
+    };
+
+    // --- CARICAMENTO GIRONI ---
+    const gironeAContainer = document.getElementById('girone-a-calendario');
+    risultatiPartite.gironeA.forEach(p => {
+        gironeAContainer.innerHTML += `<tr><td>${p.data}</td><td>${p.ora}</td><td>${nomeSquadra(squadreGironeA[p.squadra1])}</td><td>${nomeSquadra(squadreGironeA[p.squadra2])}</td><td>${p.risultato}</td></tr>`;
+    });
+
+    const gironeBContainer = document.getElementById('girone-b-calendario');
+    risultatiPartite.gironeB.forEach(p => {
+        gironeBContainer.innerHTML += `<tr><td>${p.data}</td><td>${p.ora}</td><td>${nomeSquadra(squadreGironeB[p.squadra1])}</td><td>${nomeSquadra(squadreGironeB[p.squadra2])}</td><td>${p.risultato}</td></tr>`;
+    });
+
+    // --- FASI FINALI ---
+    function aggiornaFasiFinali() {
+        const eliminatorieContainer = document.getElementById('eliminatorie');
+        const quartiContainer = document.getElementById('quarti');
+        const semifinaliContainer = document.getElementById('semifinali');
+        const finaliContainer = document.getElementById('finali');
+
+        const classificaA = creaClassifica(squadreGironeA);
+        const classificaB = creaClassifica(squadreGironeB);
+        aggiornaClassifica(classificaA, risultatiPartite.gironeA, squadreGironeA);
+        aggiornaClassifica(classificaB, risultatiPartite.gironeB, squadreGironeB);
+
+        const ordA = ordinaClassifica(classificaA);
+        const ordB = ordinaClassifica(classificaB);
+
+        // Eliminatorie
+        const E1 = { squadra1: ordA[2] || "3A", squadra2: ordB[3] || "4B", risultato: risultatiFaseFinale.eliminatorie[0].risultato };
+        const E2 = { squadra1: ordB[2] || "3B", squadra2: ordA[3] || "4A", risultato: risultatiFaseFinale.eliminatorie[1].risultato };
+        eliminatorieContainer.innerHTML = `
+            <tr><td>${dateFasi.eliminatorie}</td><td>20:30</td><td>${E1.squadra1}</td><td>${E1.squadra2}</td><td>${E1.risultato}</td></tr>
+            <tr><td>${dateFasi.eliminatorie}</td><td>21:30</td><td>${E2.squadra1}</td><td>${E2.squadra2}</td><td>${E2.risultato}</td></tr>
+        `;
+
+        // Quarti
+        const Q1 = { squadra1: vincente(E1) || "Vincitore E1", squadra2: ordB[1] || "2B", risultato: risultatiFaseFinale.quarti[0].risultato };
+        const Q2 = { squadra1: vincente(E2) || "Vincitore E2", squadra2: ordA[1] || "2A", risultato: risultatiFaseFinale.quarti[1].risultato };
+        quartiContainer.innerHTML = `
+            <tr><td>${dateFasi.quarti}</td><td>20:30</td><td>${Q1.squadra1}</td><td>${Q1.squadra2}</td><td>${Q1.risultato}</td></tr>
+            <tr><td>${dateFasi.quarti}</td><td>21:30</td><td>${Q2.squadra1}</td><td>${Q2.squadra2}</td><td>${Q2.risultato}</td></tr>
+        `;
+
+        // Semifinali
+        const S1 = { squadra1: vincente(Q1) || "Vincitore Q1", squadra2: ordA[0] || "1A", risultato: risultatiFaseFinale.semifinali[0].risultato };
+        const S2 = { squadra1: vincente(Q2) || "Vincitore Q2", squadra2: ordB[0] || "1B", risultato: risultatiFaseFinale.semifinali[1].risultato };
+        semifinaliContainer.innerHTML = `
+            <tr><td>${dateFasi.semifinali}</td><td>20:30</td><td>${S1.squadra1}</td><td>${S1.squadra2}</td><td>${S1.risultato}</td></tr>
+            <tr><td>${dateFasi.semifinali}</td><td>21:30</td><td>${S2.squadra1}</td><td>${S2.squadra2}</td><td>${S2.risultato}</td></tr>
+        `;
+
+        // Finali
+        const finale3posto = { squadra1: perdente(S1) || "Perdente S1", squadra2: perdente(S2) || "Perdente S2", risultato: risultatiFaseFinale.finali[0].risultato };
+        const finalissima = { squadra1: vincente(S1) || "Vincente S1", squadra2: vincente(S2) || "Vincente S2", risultato: risultatiFaseFinale.finali[1].risultato };
+        finaliContainer.innerHTML = `
+            <tr><td>${dateFasi.finali}</td><td>20:30</td><td>${finale3posto.squadra1}</td><td>${finale3posto.squadra2}</td><td>${finale3posto.risultato}</td></tr>
+            <tr><td>${dateFasi.finali}</td><td>21:30</td><td>${finalissima.squadra1}</td><td>${finalissima.squadra2}</td><td>${finalissima.risultato}</td></tr>
+        `;
+
+        if (risultatiCompleti()) {
+            const classificaFinale = [
+                vincente(finalissima),
+                perdente(finalissima),
+                vincente(finale3posto),
+                perdente(finale3posto)
+            ];
+            const classificaDiv = document.getElementById('classifica-finale');
+            classificaDiv.innerHTML = `
+                <h2>Classifica Finale</h2>
+                <ol>${classificaFinale.map(s => `<li>${s || "-"}</li>`).join('')}</ol>
+            `;
+        }
+    }
+
+    aggiornaFasiFinali();
+</script>
+
+<script src="js/app.js"></script>
+
+</body>
+</html>

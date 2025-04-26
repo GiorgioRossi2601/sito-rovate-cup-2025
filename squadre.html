@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Squadre - Rovate Cup 2025</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header>
+  <h1>Squadre Partecipanti</h1>
+  <img src="img/logo_rovate_cup_1.png" alt="Logo Rovate Cup">
+</header>
+
+<nav>
+  <a href="index.html">Home</a>
+  <a href="squadre.html">Squadre</a>
+  <a href="calendario.html">Calendario</a>
+  <a href="classifica.html">Classifica</a>
+  <a href="iscrizione.html">Iscrizione</a>
+  <a href="regolamento.html">Regolamento</a>
+</nav>
+
+<div class="container">
+  <div id="girone-a"></div>
+  <div id="girone-b"></div>
+</div>
+
+<script src="js/squadre.js"></script>
+<script>
+  const containerA = document.getElementById('girone-a');
+  containerA.innerHTML = "<h2>Girone A</h2>" + squadreGironeA.map(squadra => `
+    <div class="squadra">
+      <span class="nome">${squadra.nome}</span><br>
+      Colore: ${squadra.colore} - Capitano: ${squadra.capitano} - Dirigente: ${squadra.dirigente1} - Dirigente: ${squadra.dirigente2}
+    </div>
+  `).join('');
+
+  const containerB = document.getElementById('girone-b');
+  containerB.innerHTML = "<h2>Girone B</h2>" + squadreGironeB.map(squadra => `
+    <div class="squadra">
+      <span class="nome">${squadra.nome}</span><br>
+      Colore: ${squadra.colore} - Capitano: ${squadra.capitano} - Dirigente: ${squadra.dirigente1} - Dirigente: ${squadra.dirigente2}
+    </div>
+  `).join('');
+</script>
+
+<script src="js/app.js"></script>
+</body>
+</html>
