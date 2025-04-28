@@ -23,8 +23,8 @@ const risultatiPartite = {
 // Risultati delle fasi finali
 const risultatiFaseFinale = {
     eliminatorie: [
-        { match: "E1", squadra1: "", squadra2: "", risultato: "-" }, // 3A vs 4B
-        { match: "E2", squadra1: "", squadra2: "", risultato: "-" }  // 3B vs 4A
+        { match: "E1", squadra1: "3A", squadra2: "4B", risultato: "-" }, // 3A vs 4B
+        { match: "E2", squadra1: "3B", squadra2: "4A", risultato: "-" }  // 3B vs 4A
     ],
     quarti: [
         { match: "Q1", squadra1: "Vincitore E1", squadra2: "2B", risultato: "-" },
