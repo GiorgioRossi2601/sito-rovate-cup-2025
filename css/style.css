@@ -370,3 +370,21 @@ th {
 /* ------------------------------ */
 /* --- FINE MODIFICHE HOME MODERNA --- */
 /* ------------------------------ */
+
+@media (max-width: 768px) {
+    nav {
+        width: 100vw; /* forza la larghezza completa */
+        min-height: 48px; /* assicura altezza minima */
+        box-sizing: border-box;
+    }
+}
+
+/* Fix header nella home per mobile */
+body.home header {
+    padding-top: 50px;
+    padding-bottom: 30px;
+}
+
+body.home header img {
+    max-width: 90px;
+}
