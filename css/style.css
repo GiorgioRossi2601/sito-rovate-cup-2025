@@ -206,15 +206,19 @@ th {
 
     /* Titoli */
     h1 {
-        font-size: 24px; /* Rimpicciolito su mobile */
+        font-size: 28px; /* --- Migliorato font-size H1 su mobile --- */
     }
 
     h2 {
-        font-size: 24px; /* --- Migliorato font-size H2 su mobile --- */
+        font-size: 22px; /* --- Migliorato font-size H2 su mobile --- */
+    }
+
+    .hero-text h2 {
+        font-size: 24px; /* --- Migliorato font-size H2 delle sezioni Hero su mobile --- */
     }
 
     h3 {
-        font-size: 24px; /* Rimpicciolito su mobile */
+        font-size: 18px; /* Rimpicciolito su mobile */
     }
 
     /* Tabelle */
@@ -257,7 +261,7 @@ th {
     /* --- Uniformato font paragrafi e liste su mobile --- */
     .container p,
     .container li {
-        font-size: 20px;
+        font-size: 18px;
     }
 
     /* --- FINE MODIFICHE MIGLIORAMENTO MOBILE --- */
