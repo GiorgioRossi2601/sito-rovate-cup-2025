@@ -168,8 +168,8 @@ th {
 }
 
 .hero-text h2 {
-    font-size: 28px; /* Uniformato desktop */
     margin-bottom: 10px;
+    font-size: 28px; /* UNIFICATO per tutte le pagine */
 }
 
 .hero-text p {
@@ -196,41 +196,42 @@ th {
     }
 
     nav a {
-        padding: 8px;
-        font-size: 16px;
+        padding: 8px; /* Ridotto */
+        font-size: 16px; /* Confermato */
     }
 
     /* Header */
     header {
-        padding: 15px 10px;
+        padding: 25px 10px; /* Maggiore per visibilità logo */
     }
 
     header img {
         max-width: 80px;
+        margin-top: 8px; /* Più visibile su mobile */
     }
 
     /* Container */
     .container {
         margin: 10px;
-        padding: 20px;
-        margin-bottom: 30px;
+        padding: 20px; /* --- Aumentato padding container su mobile --- */
+        margin-bottom: 30px; /* --- Migliorato margine container su mobile --- */
     }
 
     /* Titoli */
     h1 {
-        font-size: 28px;
+        font-size: 28px; /* --- Migliorato font-size H1 su mobile --- */
     }
 
     h2 {
-        font-size: 22px;
+        font-size: 22px; /* --- Migliorato font-size H2 su mobile --- */
     }
 
     .hero-text h2 {
-        font-size: 24px; /* Uniformato su mobile */
+        font-size: 24px; /* --- Uniformato anche qui --- */
     }
 
     h3 {
-        font-size: 18px;
+        font-size: 18px; /* Rimpicciolito su mobile */
     }
 
     /* Tabelle */
@@ -243,21 +244,21 @@ th {
 
     /* Card */
     .card {
-        padding: 15px 20px;
-        margin-bottom: 20px;
+        padding: 15px 20px; /* Card più strette su mobile */
+        margin-bottom: 20px; /* --- Migliorato margine card su mobile --- */
     }
 
     /* CTA Buttons */
     .cta-button {
-        width: 90%;
+        width: 90%; /* Bottoni larghi ma comodi su mobile */
         margin: 10px auto;
         text-align: center;
-        display: block;
+        display: block; /* --- Centrato meglio CTA button su mobile --- */
     }
 
     /* Hero Text */
     .hero-text {
-        padding: 0 10px;
+        padding: 0 10px; /* --- Migliorato padding hero-text su mobile --- */
     }
 
     /* Sponsor Logos */
@@ -267,16 +268,12 @@ th {
     }
 
     .sponsor-img {
-        max-width: 120px;
+        max-width: 120px; /* Sponsor ridotti su telefono */
     }
 
     /* --- Uniformato font paragrafi e liste su mobile --- */
     .container p,
     .container li {
-        font-size: 18px;
-    }
-
-    .container .hero-text p {
         font-size: 18px;
     }
 
@@ -323,7 +320,7 @@ th {
 }
 
 .link-button:hover {
-    color: #e63946;
+    color: #e63946; /* Rosso acceso per hover */
 }
 
 /* Call to Action Buttons */
