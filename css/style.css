@@ -195,6 +195,7 @@ th {
   .container {
     margin: 10px;
     padding: 15px;
+    margin-bottom: 30px; /* --- Migliorato margine container su mobile --- */
   }
 
   /* Titoli */
@@ -221,6 +222,7 @@ th {
   /* Card */
   .card {
     padding: 15px 20px; /* Card più strette su mobile */
+    margin-bottom: 20px; /* --- Migliorato margine card su mobile --- */
   }
 
   /* CTA Buttons */
@@ -228,7 +230,12 @@ th {
     width: 90%; /* Bottoni larghi ma comodi su mobile */
     margin: 10px auto;
     text-align: center;
-    display: block;
+    display: block; /* --- Centrato meglio CTA button su mobile --- */
+  }
+
+  /* Hero Text */
+  .hero-text {
+    padding: 0 10px; /* --- Migliorato padding hero-text su mobile --- */
   }
 
   /* Sponsor Logos */
