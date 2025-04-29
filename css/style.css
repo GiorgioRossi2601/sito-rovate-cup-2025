@@ -210,11 +210,11 @@ th {
     }
 
     h2 {
-        font-size: 22px; /* --- Migliorato font-size H2 su mobile --- */
+        font-size: 24px; /* --- Migliorato font-size H2 su mobile --- */
     }
 
     h3 {
-        font-size: 22px; /* Rimpicciolito su mobile */
+        font-size: 24px; /* Rimpicciolito su mobile */
     }
 
     /* Tabelle */
@@ -257,7 +257,7 @@ th {
     /* --- Uniformato font paragrafi e liste su mobile --- */
     .container p,
     .container li {
-        font-size: 18px;
+        font-size: 20px;
     }
 
     /* --- FINE MODIFICHE MIGLIORAMENTO MOBILE --- */
