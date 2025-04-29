@@ -202,7 +202,8 @@ th {
 
     /* Header */
     header {
-        padding: 15px 10px;
+        padding: 40px 10px; /* AUMENTATO per far vedere il logo */
+
     }
 
     header img {
@@ -278,12 +279,6 @@ th {
 
     .container .hero-text p {
         font-size: 18px;
-    }
-
-    header img {
-        display: block !important;
-        max-width: 80px !important;
-        margin: 10px auto !important;
     }
 
     /* --- FINE MODIFICHE MIGLIORAMENTO MOBILE --- */
