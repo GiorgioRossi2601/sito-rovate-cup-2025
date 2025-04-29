@@ -1,160 +1,185 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8">
-  <title>Classifica - Rovate Cup 2025</title>
-  <link rel="stylesheet" href="../css/style.css">
+    <meta charset="UTF-8">
+    <title>Classifica - Rovate Cup 2025</title>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
 
-<header>
-  <h1>Classifica Torneo</h1>
-  <img src="../img/logo_rovate_cup_1.png" alt="Logo Rovate Cup">
+<header class="hero">
+    <h1>Rovate Cup 2025</h1>
+    <img src="../img/logo_rovate_cup_1.png" alt="Logo Rovate Cup">
 </header>
 
 <nav>
-  <a href="../index.html">Home</a>
-  <a href="squadre.html">Squadre</a>
-  <a href="calendario.html">Calendario</a>
-  <a href="classifica.html">Classifica</a>
-  <a href="iscrizione.html">Iscrizione</a>
-  <a href="regolamento.html">Regolamento</a>
+    <a href="../index.html">Home</a>
+    <a href="squadre.html">Squadre</a>
+    <a href="calendario.html">Calendario</a>
+    <a href="classifica.html">Classifica</a>
+    <a href="iscrizione.html">Iscrizione</a>
+    <a href="regolamento.html">Regolamento</a>
 </nav>
 
 <div class="container">
 
-  <h2>Girone A</h2>
-  <table>
-    <thead>
-    <tr>
-      <th>Posizione</th>
-      <th>Squadra</th>
-      <th>PG</th>
-      <th>V</th>
-      <th>N</th>
-      <th>P</th>
-      <th>GF</th>
-      <th>GS</th>
-      <th>DR</th>
-      <th>Punti</th>
-    </tr>
-    </thead>
-    <tbody id="classifica-a"></tbody>
-  </table>
+    <section class="hero-text">
+        <h2>Classifica Torneo</h2>
+        <p>Consulta la classifica aggiornata della Rovate Cup 2025.</p>
+    </section>
 
-  <h2>Girone B</h2>
-  <table>
-    <thead>
-    <tr>
-      <th>Posizione</th>
-      <th>Squadra</th>
-      <th>PG</th>
-      <th>V</th>
-      <th>N</th>
-      <th>P</th>
-      <th>GF</th>
-      <th>GS</th>
-      <th>DR</th>
-      <th>Punti</th>
-    </tr>
-    </thead>
-    <tbody id="classifica-b"></tbody>
-  </table>
+    <section class="card">
+        <h2>Girone A</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Posizione</th>
+                <th>Squadra</th>
+                <th>PG</th>
+                <th>V</th>
+                <th>N</th>
+                <th>P</th>
+                <th>GF</th>
+                <th>GS</th>
+                <th>DR</th>
+                <th>Punti</th>
+            </tr>
+            </thead>
+            <tbody id="classifica-a"></tbody>
+        </table>
+
+        <h2>Girone B</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Posizione</th>
+                <th>Squadra</th>
+                <th>PG</th>
+                <th>V</th>
+                <th>N</th>
+                <th>P</th>
+                <th>GF</th>
+                <th>GS</th>
+                <th>DR</th>
+                <th>Punti</th>
+            </tr>
+            </thead>
+            <tbody id="classifica-b"></tbody>
+        </table>
+    </section>
 
 </div>
 
 <script src="../js/squadre.js"></script>
 <script src="../js/risultati.js"></script>
-<script src="js/app.js"></script>
+<script src="../js/app.js"></script>
 
 <script>
-  function creaClassifica(squadre) {
-    const classifica = {};
-    if (Array.isArray(squadre)) {
-      squadre.forEach(s => {
-        classifica[s.nome] = { PG: 0, V: 0, N: 0, P: 0, GF: 0, GS: 0, DR: 0, Punti: 0 };
-      });
-    } else {
-      Object.values(squadre).forEach(s => {
-        classifica[s.nome] = { PG: 0, V: 0, N: 0, P: 0, GF: 0, GS: 0, DR: 0, Punti: 0 };
-      });
-    }
-    return classifica;
-  }
-
-  function aggiornaClassifica(classifica, partite, squadre) {
-    partite.forEach(p => {
-      if (p.risultato !== "-") {
-        const [gol1, gol2] = p.risultato.split("-").map(Number);
-        const squadra1 = squadre[p.squadra1]?.nome || p.squadra1;
-        const squadra2 = squadre[p.squadra2]?.nome || p.squadra2;
-
-        if (!classifica[squadra1]) classifica[squadra1] = { PG: 0, V: 0, N: 0, P: 0, GF: 0, GS: 0, DR: 0, Punti: 0 };
-        if (!classifica[squadra2]) classifica[squadra2] = { PG: 0, V: 0, N: 0, P: 0, GF: 0, GS: 0, DR: 0, Punti: 0 };
-
-        classifica[squadra1].PG++;
-        classifica[squadra2].PG++;
-        classifica[squadra1].GF += gol1;
-        classifica[squadra1].GS += gol2;
-        classifica[squadra2].GF += gol2;
-        classifica[squadra2].GS += gol1;
-
-        if (gol1 > gol2) {
-          classifica[squadra1].V++;
-          classifica[squadra2].P++;
-          classifica[squadra1].Punti += 3;
-        } else if (gol1 < gol2) {
-          classifica[squadra2].V++;
-          classifica[squadra1].P++;
-          classifica[squadra2].Punti += 3;
+    function creaClassifica(squadre) {
+        const classifica = {};
+        if (Array.isArray(squadre)) {
+            squadre.forEach(s => {
+                classifica[s.nome] = {PG: 0, V: 0, N: 0, P: 0, GF: 0, GS: 0, DR: 0, Punti: 0};
+            });
         } else {
-          classifica[squadra1].N++;
-          classifica[squadra2].N++;
-          classifica[squadra1].Punti++;
-          classifica[squadra2].Punti++;
+            Object.values(squadre).forEach(s => {
+                classifica[s.nome] = {PG: 0, V: 0, N: 0, P: 0, GF: 0, GS: 0, DR: 0, Punti: 0};
+            });
         }
-      }
-    });
-
-    for (let squadra in classifica) {
-      classifica[squadra].DR = classifica[squadra].GF - classifica[squadra].GS;
+        return classifica;
     }
-  }
 
-  function disegnaClassifica(containerId, classifica) {
-    const container = document.getElementById(containerId);
-    const arrayClassifica = Object.entries(classifica)
+    function aggiornaClassifica(classifica, partite, squadre) {
+        partite.forEach(p => {
+            if (p.risultato !== "-") {
+                const [gol1, gol2] = p.risultato.split("-").map(Number);
+                const squadra1 = squadre[p.squadra1]?.nome || p.squadra1;
+                const squadra2 = squadre[p.squadra2]?.nome || p.squadra2;
+
+                if (!classifica[squadra1]) classifica[squadra1] = {
+                    PG: 0,
+                    V: 0,
+                    N: 0,
+                    P: 0,
+                    GF: 0,
+                    GS: 0,
+                    DR: 0,
+                    Punti: 0
+                };
+                if (!classifica[squadra2]) classifica[squadra2] = {
+                    PG: 0,
+                    V: 0,
+                    N: 0,
+                    P: 0,
+                    GF: 0,
+                    GS: 0,
+                    DR: 0,
+                    Punti: 0
+                };
+
+                classifica[squadra1].PG++;
+                classifica[squadra2].PG++;
+                classifica[squadra1].GF += gol1;
+                classifica[squadra1].GS += gol2;
+                classifica[squadra2].GF += gol2;
+                classifica[squadra2].GS += gol1;
+
+                if (gol1 > gol2) {
+                    classifica[squadra1].V++;
+                    classifica[squadra2].P++;
+                    classifica[squadra1].Punti += 3;
+                } else if (gol1 < gol2) {
+                    classifica[squadra2].V++;
+                    classifica[squadra1].P++;
+                    classifica[squadra2].Punti += 3;
+                } else {
+                    classifica[squadra1].N++;
+                    classifica[squadra2].N++;
+                    classifica[squadra1].Punti++;
+                    classifica[squadra2].Punti++;
+                }
+            }
+        });
+
+        for (let squadra in classifica) {
+            classifica[squadra].DR = classifica[squadra].GF - classifica[squadra].GS;
+        }
+    }
+
+    function disegnaClassifica(containerId, classifica) {
+        const container = document.getElementById(containerId);
+        const arrayClassifica = Object.entries(classifica)
             .sort((a, b) =>
-                    b[1].Punti - a[1].Punti ||
-                    b[1].DR - a[1].DR ||
-                    b[1].GF - a[1].GF
+                b[1].Punti - a[1].Punti ||
+                b[1].DR - a[1].DR ||
+                b[1].GF - a[1].GF
             );
-    container.innerHTML = "";
-    arrayClassifica.forEach(([nome, dati], index) => {
-      container.innerHTML += `
+        container.innerHTML = "";
+        arrayClassifica.forEach(([nome, dati], index) => {
+            container.innerHTML += `
         <tr>
-            <td>${index + 1}</td>
-            <td>${nome}</td>
-            <td>${dati.PG}</td>
-            <td>${dati.V}</td>
-            <td>${dati.N}</td>
-            <td>${dati.P}</td>
-            <td>${dati.GF}</td>
-            <td>${dati.GS}</td>
-            <td>${dati.DR}</td>
-            <td>${dati.Punti}</td>
+          <td>${index + 1}</td>
+          <td>${nome}</td>
+          <td>${dati.PG}</td>
+          <td>${dati.V}</td>
+          <td>${dati.N}</td>
+          <td>${dati.P}</td>
+          <td>${dati.GF}</td>
+          <td>${dati.GS}</td>
+          <td>${dati.DR}</td>
+          <td>${dati.Punti}</td>
         </tr>`;
-    });
-  }
+        });
+    }
 
-  const classificaA = creaClassifica(squadreGironeA);
-  const classificaB = creaClassifica(squadreGironeB);
+    const classificaA = creaClassifica(squadreGironeA);
+    const classificaB = creaClassifica(squadreGironeB);
 
-  aggiornaClassifica(classificaA, risultatiPartite.gironeA, squadreGironeA);
-  aggiornaClassifica(classificaB, risultatiPartite.gironeB, squadreGironeB);
+    aggiornaClassifica(classificaA, risultatiPartite.gironeA, squadreGironeA);
+    aggiornaClassifica(classificaB, risultatiPartite.gironeB, squadreGironeB);
 
-  disegnaClassifica('classifica-a', classificaA);
-  disegnaClassifica('classifica-b', classificaB);
+    disegnaClassifica('classifica-a', classificaA);
+    disegnaClassifica('classifica-b', classificaB);
 </script>
 
 </body>

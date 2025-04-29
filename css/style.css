@@ -4,20 +4,20 @@
 body {
   margin: 0;
   font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f0f2f5;
+  background-color: #eafaf1;
   color: #333;
   line-height: 1.6;
 }
 
 /* Header */
+/* --- MODIFICATO header: tolti i bordi arrotondati, padding ridotto, larghezza piena --- */
 header {
   background: linear-gradient(135deg, #2e8b57, #3cb371);
   color: white;
-  padding: 40px 20px;
+  padding: 20px 10px; /* RIDOTTO */
   text-align: center;
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  width: 100%; /* AGGIUNTO */
 }
 
 header img {
@@ -72,7 +72,7 @@ nav a:hover::after {
 /* Container */
 .container {
   max-width: 960px;
-  margin: 20px auto;
+  margin: 30px auto 20px auto; /* --- MODIFICATO margine sopra container per distacco header --- */
   padding: 20px;
   background: #fff;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
@@ -84,6 +84,11 @@ nav a:hover::after {
 h1, h2, h3 {
   color: #2e8b57;
   margin-top: 40px;
+}
+
+/* Titoli nell'Header */
+header h1, header h2, header h3 {
+  color: white;
 }
 
 /* Tabelle */
@@ -150,8 +155,22 @@ th {
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
+/* --- NUOVO: Hero Text Section --- */
+.hero-text {
+  text-align: center;
+  margin: 40px 0 20px 0;
+}
+.hero-text h2 {
+  margin-bottom: 10px;
+}
+.hero-text p {
+  font-size: 18px;
+}
+
 /* Responsive per mobile */
 @media (max-width: 768px) {
+
+  /* --- INIZIO MODIFICHE MIGLIORAMENTO MOBILE --- */
 
   /* Navbar */
   nav {
@@ -159,8 +178,17 @@ th {
   }
 
   nav a {
-    padding: 10px;
-    font-size: 16px;
+    padding: 8px; /* Ridotto */
+    font-size: 16px; /* Confermato */
+  }
+
+  /* Header */
+  header {
+    padding: 15px 10px; /* Ancora più compatto su mobile */
+  }
+
+  header img {
+    max-width: 80px; /* Logo più piccolo su telefono */
   }
 
   /* Container */
@@ -171,15 +199,15 @@ th {
 
   /* Titoli */
   h1 {
-    font-size: 28px;
+    font-size: 24px; /* Rimpicciolito su mobile */
   }
 
   h2 {
-    font-size: 22px;
+    font-size: 20px; /* Rimpicciolito su mobile */
   }
 
   h3 {
-    font-size: 20px;
+    font-size: 18px; /* Rimpicciolito su mobile */
   }
 
   /* Tabelle */
@@ -190,15 +218,115 @@ th {
     -webkit-overflow-scrolling: touch;
   }
 
+  /* Card */
+  .card {
+    padding: 15px 20px; /* Card più strette su mobile */
+  }
+
+  /* CTA Buttons */
+  .cta-button {
+    width: 90%; /* Bottoni larghi ma comodi su mobile */
+    margin: 10px auto;
+    text-align: center;
+    display: block;
+  }
+
   /* Sponsor Logos */
   .sponsor-logos {
     flex-direction: column;
     align-items: center;
   }
+
+  .sponsor-img {
+    max-width: 120px; /* Sponsor ridotti su telefono */
+  }
+
+  /* --- FINE MODIFICHE MIGLIORAMENTO MOBILE --- */
 }
 
-/* Animazione */
+/* Animazione FadeIn */
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
 }
+
+/* ------------------------------ */
+/* --- INIZIO MODIFICHE HOME MODERNA --- */
+/* ------------------------------ */
+
+/* Hero (Benvenuto Home) */
+.hero {
+  text-align: center;
+  animation: fadeIn 1s ease-in-out;
+}
+
+/* Card Home */
+.card {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(5px);
+  padding: 20px 30px;
+  margin-bottom: 30px;
+  border-radius: 15px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+  animation: fadeInUp 0.8s ease-in-out;
+}
+
+/* Link stile bottone */
+.link-button {
+  color: #2e8b57;
+  font-weight: bold;
+  text-decoration: underline;
+  transition: color 0.3s;
+}
+
+.link-button:hover {
+  color: #e63946; /* Rosso acceso per hover */
+}
+
+/* Call to Action Buttons */
+.cta-button {
+  background: linear-gradient(135deg, #2e8b57, #3cb371);
+  color: white;
+  padding: 14px 24px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 18px;
+  transition: background 0.3s, transform 0.3s;
+  display: inline-block;
+  margin: 10px;
+}
+
+.cta-button:hover {
+  background: #e63946;
+  transform: translateY(-5px);
+}
+
+/* Sponsor Logo Hover */
+.sponsor-img {
+  max-width: 150px;
+  margin: 10px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  border-radius: 12px;
+}
+
+.sponsor-img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+/* Animazione per Card */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ------------------------------ */
+/* --- FINE MODIFICHE HOME MODERNA --- */
+/* ------------------------------ */

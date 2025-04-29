@@ -6,8 +6,9 @@
   <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-<header>
-  <h1>Squadre Partecipanti</h1>
+
+<header class="hero">
+  <h1>Rovate Cup 2025</h1>
   <img src="../img/logo_rovate_cup_1.png" alt="Logo Rovate Cup">
 </header>
 
@@ -21,14 +22,23 @@
 </nav>
 
 <div class="container">
-  <div id="girone-a"></div>
-  <div id="girone-b"></div>
+
+  <section class="hero-text">
+    <h2>Squadre Partecipanti</h2>
+    <p>Scopri le squadre che parteciperanno alla Rovate Cup 2025.</p>
+  </section>
+
+  <section class="card">
+    <div id="girone-a"></div>
+    <div id="girone-b"></div>
+  </section>
+
 </div>
 
 <script src="../js/squadre.js"></script>
 <script>
   const containerA = document.getElementById('girone-a');
-  containerA.innerHTML = "<h2>Girone A</h2>" + squadreGironeA.map(squadra => `
+  containerA.innerHTML = "<h3>Girone A</h3>" + squadreGironeA.map(squadra => `
     <div class="squadra">
       <span class="nome">${squadra.nome}</span><br>
       Colore: ${squadra.colore} - Capitano: ${squadra.capitano} - Dirigente: ${squadra.dirigente1} - Dirigente: ${squadra.dirigente2}
@@ -36,7 +46,7 @@
   `).join('');
 
   const containerB = document.getElementById('girone-b');
-  containerB.innerHTML = "<h2>Girone B</h2>" + squadreGironeB.map(squadra => `
+  containerB.innerHTML = "<h3>Girone B</h3>" + squadreGironeB.map(squadra => `
     <div class="squadra">
       <span class="nome">${squadra.nome}</span><br>
       Colore: ${squadra.colore} - Capitano: ${squadra.capitano} - Dirigente: ${squadra.dirigente1} - Dirigente: ${squadra.dirigente2}
@@ -44,6 +54,6 @@
   `).join('');
 </script>
 
-<script src="js/app.js"></script>
+<script src="../js/app.js"></script>
 </body>
 </html>
