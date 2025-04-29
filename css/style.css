@@ -1,7 +1,9 @@
 /* Reset base */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
 body {
   margin: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: #f0f2f5;
   color: #333;
   line-height: 1.6;
@@ -9,16 +11,24 @@ body {
 
 /* Header */
 header {
-  background-color: #2e8b57;
+  background: linear-gradient(135deg, #2e8b57, #3cb371);
   color: white;
-  padding: 30px 20px;
+  padding: 40px 20px;
   text-align: center;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 header img {
   display: block;
   margin: 10px auto 0;
   max-width: 100px;
+  transition: transform 0.3s;
+}
+
+header img:hover {
+  transform: scale(1.1);
 }
 
 /* Navbar */
@@ -33,12 +43,30 @@ nav a {
   color: white;
   padding: 14px 20px;
   text-decoration: none;
-  font-weight: 500;
-  transition: background 0.3s;
+  font-weight: 600;
+  position: relative;
+  transition: all 0.3s ease;
 }
 
 nav a:hover {
   background-color: #444;
+}
+
+nav a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  display: block;
+  background: #3cb371;
+  transition: width 0.3s;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+nav a:hover::after {
+  width: 50%;
 }
 
 /* Container */
@@ -47,8 +75,9 @@ nav a:hover {
   margin: 20px auto;
   padding: 20px;
   background: #fff;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   border-radius: 10px;
+  animation: fadeIn 0.8s ease-in-out;
 }
 
 /* Titoli */
@@ -85,7 +114,12 @@ th {
   padding: 15px;
   margin-bottom: 12px;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  transition: transform 0.3s;
+}
+
+.squadra:hover {
+  transform: translateY(-5px);
 }
 
 .nome {
@@ -161,4 +195,10 @@ th {
     flex-direction: column;
     align-items: center;
   }
+}
+
+/* Animazione */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
