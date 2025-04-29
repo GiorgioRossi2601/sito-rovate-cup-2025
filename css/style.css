@@ -81,7 +81,7 @@ nav a:hover::after {
     margin: 30px auto 20px auto; /* --- MODIFICATO margine sopra container per distacco header --- */
     padding: 20px;
     background: #fff;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     animation: fadeIn 0.8s ease-in-out;
 }
@@ -125,7 +125,7 @@ th {
     padding: 15px;
     margin-bottom: 12px;
     border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
     transition: transform 0.3s;
 }
 
@@ -158,7 +158,7 @@ th {
     height: auto;
     border-radius: 8px;
     background: #fff;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 /* --- NUOVO: Hero Text Section --- */
@@ -166,17 +166,29 @@ th {
     text-align: center;
     margin: 40px 0 20px 0;
 }
+
 .hero-text h2 {
     margin-bottom: 10px;
 }
+
 .hero-text p {
     font-size: 18px;
+}
+
+/* Aggiunta classe per uniformare i titoli principali */
+
+.page-title {
+    font-size: 28px; /* Desktop */
+    font-weight: 700;
 }
 
 /* Responsive per mobile */
 @media (max-width: 768px) {
 
     /* --- INIZIO MODIFICHE MIGLIORAMENTO MOBILE --- */
+    .page-title {
+        font-size: 24px; /* Mobile */
+    }
 
     /* Navbar */
     nav {
@@ -269,8 +281,12 @@ th {
 
 /* Animazione FadeIn */
 @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 /* ------------------------------ */
@@ -290,7 +306,7 @@ th {
     padding: 20px 30px;
     margin-bottom: 30px;
     border-radius: 15px;
-    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
     animation: fadeInUp 0.8s ease-in-out;
 }
 
@@ -335,7 +351,7 @@ th {
 
 .sponsor-img:hover {
     transform: scale(1.05);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 /* Animazione per Card */
