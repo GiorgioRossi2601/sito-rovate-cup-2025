@@ -185,39 +185,38 @@ th {
 /* Responsive per mobile */
 @media (max-width: 768px) {
 
-    /* --- INIZIO MODIFICHE MIGLIORAMENTO MOBILE --- */
     .page-title {
-        font-size: 24px; /* Mobile */
+        font-size: 24px;
     }
 
     nav {
-        width: 100%; /* più sicuro di 100vw */
-        flex-direction: column; /* forza colonna */
-        align-items: stretch;   /* ogni voce larga quanto il nav */
-        padding: 10px 0;        /* spazio verticale interno */
+        width: 100%; /* corretto */
+        flex-direction: column;
+        align-items: stretch;
+        box-sizing: border-box;
+        padding: 12px 0;
+        gap: 4px;
     }
 
     nav a {
-        padding: 12px; /* più spazio cliccabile */
+        padding: 14px 20px;
         font-size: 16px;
-        text-align: center;     /* allineamento centrale */
+        text-align: center;
     }
 
-    /* Header */
     header {
-        padding: 40px 10px; /* Maggiore per visibilità logo */
+        padding: 40px 10px;
     }
 
     header img {
         max-width: 80px;
-        margin-top: 8px; /* Più visibile su mobile */
+        margin-top: 8px;
     }
 
-    /* Container */
     .container {
         margin: 10px;
-        padding: 20px; /* --- Aumentato padding container su mobile --- */
-        margin-bottom: 30px; /* --- Migliorato margine container su mobile --- */
+        padding: 20px;
+        margin-bottom: 30px;
     }
 
     /* Titoli */
