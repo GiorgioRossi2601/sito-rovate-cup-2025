@@ -190,14 +190,17 @@ th {
         font-size: 24px; /* Mobile */
     }
 
-    /* Navbar */
     nav {
-        flex-direction: column;
+        width: 100%; /* più sicuro di 100vw */
+        flex-direction: column; /* forza colonna */
+        align-items: stretch;   /* ogni voce larga quanto il nav */
+        padding: 10px 0;        /* spazio verticale interno */
     }
 
     nav a {
-        padding: 8px; /* Ridotto */
-        font-size: 16px; /* Confermato */
+        padding: 12px; /* più spazio cliccabile */
+        font-size: 16px;
+        text-align: center;     /* allineamento centrale */
     }
 
     /* Header */
